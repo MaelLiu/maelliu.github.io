@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brent hedge closing ledger</title>
+  <style>
+    :root{--bg:#0b1220;--panel:#121d2d;--panel2:#172840;--line:#2c405b;--text:#edf4fb;--muted:#9eb0c5;--blue:#5ed4ff;--green:#6fe0a6;--amber:#ffc96b;--red:#ff7e7a;--purple:#c89aff}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 80% -20%,#1e3d5d 0,#0b1220 44%);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{width:min(1180px,calc(100% - 36px));margin:0 auto;padding:34px 0 70px}.top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.14em}.muted{color:var(--muted)}h1{font-size:clamp(30px,5vw,58px);line-height:1.02;letter-spacing:-.045em;margin:12px 0 16px;max-width:720px}h2{margin:0 0 8px;font-size:22px}h3{margin:0 0 5px;font-size:15px}.back{color:var(--blue);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:9px 12px;white-space:nowrap}.back:hover{text-decoration:underline}.lede{max-width:760px;color:var(--muted);font-size:18px;margin:0}
+    .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:30px 0 14px}.kpi,.panel{background:rgba(18,29,45,.94);border:1px solid var(--line);border-radius:13px}.kpi{padding:15px;min-height:110px}.kpi .label{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.kpi strong{display:block;margin-top:9px;font-size:26px;line-height:1;color:var(--green)}.kpi small{display:block;margin-top:8px;color:var(--muted)}.kpi.amber strong{color:var(--amber)}.kpi.red strong{color:var(--red)}.kpi.blue strong{color:var(--blue)}.kpi.purple strong{color:var(--purple)}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}.panel{padding:18px}.panel h2{color:var(--text)}.panel .note{color:var(--muted);font-size:13px;margin:0 0 14px}.hero-image{width:100%;border:1px solid var(--line);border-radius:9px;background:#0e141b}.bridge{width:100%;height:auto;display:block}.legend{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:12px;margin-top:8px}.legend span{display:inline-flex;align-items:center;gap:6px}.dot{width:9px;height:9px;border-radius:50%;display:inline-block}.dot.green{background:var(--green)}.dot.red{background:var(--red)}.dot.amber{background:var(--amber)}.dot.blue{background:var(--blue)}
+    table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}td:last-child{text-align:right;font-variant-numeric:tabular-nums}.positive{color:var(--green)}.negative{color:var(--red)}.amber{color:var(--amber)}
+    .formula{background:var(--panel2);border-radius:10px;padding:14px;margin:12px 0;color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;overflow:auto}.callout{padding:15px;border-left:3px solid var(--blue);background:rgba(94,212,255,.08);border-radius:0 9px 9px 0}.callout strong{color:var(--blue)}.small{font-size:12px;color:var(--muted)}footer{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);margin-top:28px;padding-top:16px;font-size:12px;color:var(--muted)}
+    @media(max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:1fr}.top{display:block}.back{display:inline-block;margin-top:20px}}
+    @media(max-width:520px){main{width:min(100% - 22px,1180px);padding-top:22px}.kpis{grid-template-columns:1fr}.kpi{min-height:auto}.lede{font-size:16px}footer{display:block}footer span{display:block;margin-top:7px}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div>
+      <div class="eyebrow">INTEREST-RATE HEDGE · CLOSING LEDGER</div>
+      <h1>About 50% net APR on 300 USDT deployed capital.</h1>
+      <p class="lede">The completed journey used 600 USDT of hedge notional and 300 USDT of posted capital: 100 USDT of HL margin plus 200 USDT in BZ3S. The separate BZ3S commodity-tracking backtest puts structural tracking drag at roughly 10–15% APR.</p>
+    </div>
+    <a class="back" href="index.html">← Profile</a>
+  </div>
+
+  <section class="kpis" aria-label="Closing metrics">
+    <div class="kpi blue"><span class="label">Deployed capital</span><strong>300.00</strong><small>HL margin + BZ3S</small></div>
+    <div class="kpi"><span class="label">Observed net APR</span><strong>≈50%</strong><small>53.30% flat-to-flat</small></div>
+    <div class="kpi amber"><span class="label">Fixed carry input</span><strong>60%</strong><small>scenario rate</small></div>
+    <div class="kpi red"><span class="label">BZ3S tracking cost</span><strong>10–15%</strong><small>commodity backtest APR</small></div>
+    <div class="kpi purple"><span class="label">Hedge notional</span><strong>600.00</strong><small>YU / HL basis</small></div>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Return and cost bridge</h2>
+      <p class="note">The public headline is about 50% net APR on deployed capital. The 10–15% figure is a separate same-index BZ3S tracking-cost benchmark, not a second return denominator.</p>
+      <svg class="bridge" viewBox="0 0 760 315" role="img" aria-label="Return and cost bridge showing approximately 50 percent net APR, 60 percent fixed carry, and 10 to 15 percent BZ3S tracking cost">
+        <line x1="70" y1="262" x2="700" y2="262" stroke="#3b516d" stroke-width="2"/>
+        <line x1="70" y1="42" x2="70" y2="262" stroke="#3b516d" stroke-width="2"/>
+        <text x="24" y="50" fill="#9eb0c5" font-size="12">60%</text><text x="24" y="151" fill="#9eb0c5" font-size="12">30%</text><text x="24" y="267" fill="#9eb0c5" font-size="12">0%</text>
+        <rect x="118" y="79" width="126" height="183" rx="7" fill="#6fe0a6"/>
+        <text x="181" y="64" text-anchor="middle" fill="#edf4fb" font-size="15" font-weight="700">≈50%</text>
+        <text x="181" y="286" text-anchor="middle" fill="#9eb0c5" font-size="12">observed net APR</text>
+        <rect x="318" y="42" width="126" height="220" rx="7" fill="#ffc96b" opacity=".9"/>
+        <text x="381" y="27" text-anchor="middle" fill="#edf4fb" font-size="15" font-weight="700">60%</text>
+        <text x="381" y="286" text-anchor="middle" fill="#9eb0c5" font-size="12">fixed carry input</text>
+        <rect x="518" y="207" width="126" height="55" rx="7" fill="#ff7e7a"/>
+        <text x="581" y="192" text-anchor="middle" fill="#edf4fb" font-size="15" font-weight="700">10–15%</text>
+        <text x="581" y="286" text-anchor="middle" fill="#9eb0c5" font-size="12">BZ3S tracking cost</text>
+        <path d="M244 144 C275 144 286 144 318 144" stroke="#9eb0c5" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <path d="M444 144 C478 144 485 220 518 220" stroke="#9eb0c5" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9eb0c5"/></marker></defs>
+      </svg>
+      <div class="legend"><span><i class="dot green"></i>Observed net</span><span><i class="dot amber"></i>Fixed-rate input</span><span><i class="dot red"></i>Commodity tracking benchmark</span></div>
+    </section>
+
+    <section class="panel">
+      <h2>Flat-to-flat ledger</h2>
+      <p class="note">2026-10-05 13:55 UTC → 2026-10-18 07:27 UTC · 12.7302 days.</p>
+      <table>
+        <thead><tr><th>Component</th><th>USDT</th></tr></thead>
+        <tbody>
+          <tr><td>Boros YU</td><td class="negative">−3.2604</td></tr>
+          <tr><td>HL BRENTOIL</td><td class="positive">+55.5518</td></tr>
+          <tr><td>Gate BZ3S</td><td class="negative">−46.7145</td></tr>
+          <tr><td>Net journey</td><td class="positive"><strong>+5.5769</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="formula">observed net APR = 5.5769 / 300 / (12.7302 / 365) = 53.30% (≈50%)</div>
+      <div class="callout"><strong>Closing interpretation:</strong> the public result is about 50% net APR on 300 USDT of deployed capital. The 10–15% figure is the separate BZ3S tracking-cost benchmark from the commodity backtest.</div>
+    </section>
+  </div>
+
+  <section class="panel" style="margin-top:14px">
+    <h2>Dashboard replay</h2>
+    <p class="note">The image below is regenerated from the append-only telemetry and reconciled journey report. It keeps the 600 USDT hedge notional visible beside the 300 USDT deployed-capital basis.</p>
+    <img class="hero-image" src="assets/interest-rate-swap-dashboard-replay-real.png" alt="Brent hedge closing dashboard showing deployed capital, net APR, and hedge cost" />
+  </section>
+
+  <section class="panel" style="margin-top:14px">
+    <h2>Evidence boundary</h2>
+    <p class="small"><strong>Observed:</strong> +5.5769 USDT net over one completed flat-to-flat journey, equivalent to 53.30% simple annualized net APR on 300 USDT deployed capital. <strong>Backtest benchmark:</strong> BZ3S same-index commodity tracking drag is roughly 10–15% APR, with Brent near 12.95%. <strong>Unknown:</strong> stability across maturities, regimes, larger size, and future execution conditions.</p>
+  </section>
+
+  <footer><span>Owen Liu · Brent carry and delta hedge research</span><span>Source: local Boros / HL / Gate ledger · closing report</span></footer>
+</main>
+</body>
+</html>
